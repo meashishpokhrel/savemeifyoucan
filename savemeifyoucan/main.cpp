@@ -9,7 +9,7 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1900, 1000), "Menu");
-	
+	window.setFramerateLimit(60);
 	
 	
 	
@@ -68,9 +68,14 @@ int main()
 					{
 					
 
-
-						sf::RenderWindow window(sf::VideoMode(1900, 1000), "HUman vs Human");
-
+						
+						
+							//sf::RenderWindow window(sf::VideoMode(1900, 1000), "HUman vs Human");
+							sf::RenderWindow window;
+							window.create(sf::VideoMode(1900, 1000), "HUMAN VS HUMNA");
+							window.setKeyRepeatEnabled(false);
+							window.setFramerateLimit(60);
+						
 
 						//for bCKGROUND
 						sf::Texture texture;
@@ -168,23 +173,36 @@ int main()
 						sf::RectangleShape line4(sf::Vector2f(180, 20));
 						line4.setPosition(240, 28);
 						line4.rotate(90);
+						line4.setFillColor(sf::Color::Yellow);
 						//for head of hangman
 						sf::CircleShape circle(35);
 						circle.setPosition(200, 60);
+						sf::Texture texturecircle;
+						if (!texturecircle.loadFromFile("sad.jpg"))
+						{
+							// error...
+						}
+						circle.setTexture(&texturecircle);
+
 						//fro legs of hangman
 						sf::RectangleShape line5(sf::Vector2f(65, 20));
 						line5.setPosition(240, 200);
+						line5.setFillColor(sf::Color::Yellow);
+
 						line5.rotate(60);
 						sf::RectangleShape line6(sf::Vector2f(75, 20));
 						line6.setPosition(240, 200);
 						line6.rotate(120);
+						line6.setFillColor(sf::Color::Yellow);
 						//for hands of hangman
 						sf::RectangleShape line8(sf::Vector2f(75, 20));
 						line8.setPosition(240, 150);
+						line8.setFillColor(sf::Color::Yellow);
 						line8.rotate(148);
 						sf::RectangleShape line7(sf::Vector2f(65, 20));
 						line7.setPosition(240, 140);
 						line7.rotate(32);
+						line7.setFillColor(sf::Color::Yellow);
 						//for another hangman next side one 
 						sf::RectangleShape line10(sf::Vector2f(150, 20));
 
@@ -196,23 +214,34 @@ int main()
 						line30.setPosition(1585, 28);
 						sf::RectangleShape line40(sf::Vector2f(180, 20));
 						line40.setPosition(1740, 28);
+						line40.setFillColor(sf::Color::Yellow);
 						line40.rotate(90);
 						sf::CircleShape circle2(35);
 						circle2.setPosition(1700, 60);
+						sf::Texture texturecircle2;
+						if (!texturecircle2.loadFromFile("sad.jpg"))
+						{
+							// error...
+						}
+						circle2.setTexture(&texturecircle2);
 						//for legs of another hangman
 						sf::RectangleShape line50(sf::Vector2f(75, 20));
 						line50.setPosition(1740, 200);
 						line50.rotate(120);
+						line50.setFillColor(sf::Color::Yellow);
 						sf::RectangleShape line60(sf::Vector2f(65, 20));
 						line60.setPosition(1740, 200);
 						line60.rotate(60);
+						line60.setFillColor(sf::Color::Yellow);
 						//for hands of another hangman
 						sf::RectangleShape line80(sf::Vector2f(65, 20));
 						line80.setPosition(1740, 140);
 						line80.rotate(32);
+						line80.setFillColor(sf::Color::Yellow);
 						sf::RectangleShape line70(sf::Vector2f(75, 20));
 						line70.setPosition(1740, 150);
 						line70.rotate(148);
+						line70.setFillColor(sf::Color::Yellow);
 
 						//text for player health
 						sf::Font font;
@@ -350,15 +379,30 @@ int main()
 							text00.setFont(font);
 							text00.setString("Player 1 wins!!!");
 							text00.setFillColor(sf::Color::Cyan);
-							text00.setCharacterSize(35);
-							text00.setPosition(35, 800);
+							text00.setCharacterSize(50);
+							text00.setPosition(800, 600);
 
 							sf::Text text000;
 							text000.setFont(font);
 							text000.setString("Player 2 wins!!!");
 							text000.setFillColor(sf::Color::Cyan);
-							text000.setCharacterSize(35);
-							text000.setPosition(1450, 800);
+							text000.setCharacterSize(50);
+							text000.setPosition(800, 600);
+
+							sf::Text textdraw;
+							textdraw.setFont(font);
+							textdraw.setString("Draw!!!");
+							textdraw.setFillColor(sf::Color::Cyan);
+							textdraw.setCharacterSize(50);
+							textdraw.setPosition(800, 600);
+
+
+							sf::Text textexit;
+							textexit.setFont(font);
+							textexit.setString("Press Enter to Continue..");
+							textexit.setFillColor(sf::Color::Cyan);
+							textexit.setCharacterSize(35);
+							textexit.setPosition(800, 750);
 
 
 
@@ -476,6 +520,7 @@ int main()
 									window.draw(spritescissor1);
 									window.draw(spritepaper2);
 									window.draw(text00);
+									window.draw(textexit);
 
 
 									score = 1;
@@ -496,6 +541,7 @@ int main()
 									window.draw(spritepaper1);
 									window.draw(spriterock2);
 									window.draw(text00);
+									window.draw(textexit);
 
 
 									score = 1;
@@ -515,6 +561,7 @@ int main()
 									window.draw(spriterock1);
 									window.draw(spritescissor2);
 									window.draw(text00);
+									window.draw(textexit);
 
 
 									score = 1;
@@ -534,6 +581,29 @@ int main()
 
 
 								}
+
+								if (a == 1 && x == 4)
+								{
+
+									window.draw(spritescissor1);
+									window.draw(spritescissor2);
+									window.draw(textdraw);
+								}
+
+								if (s == 2 && y == 5)
+								{
+
+									window.draw(spritepaper1);
+									window.draw(spritepaper2);
+									window.draw(textdraw);
+								}
+
+								if (d == 3 && z == 6)
+								{
+									window.draw(spriterock2);
+									window.draw(spriterock1);
+									window.draw(textdraw);
+								}
 								if (x == 4 && s == 2)
 								{
 									//window.draw(text000);
@@ -547,6 +617,7 @@ int main()
 									window.draw(spritescissor2);
 									window.draw(spritepaper1);
 									window.draw(text000);
+									window.draw(textexit);
 
 									score = 1;
 
@@ -568,6 +639,7 @@ int main()
 									window.draw(spritepaper2);
 									window.draw(spriterock1);
 									window.draw(text000);
+									window.draw(textexit);
 
 									score = 1;
 
@@ -589,6 +661,7 @@ int main()
 									window.draw(spriterock2);
 									window.draw(spritescissor1);
 									window.draw(text000);
+									window.draw(textexit);
 
 									score = 1;
 
@@ -597,14 +670,764 @@ int main()
 									textscore1.setString(ssscore.str());
 
 								}
+								//window.draw(textexit);
 								{
 
-
+									//enter le naya windoe lyane delete this loop papradox.........
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
 									{
-										
-									}
+										sf::RenderWindow window;
+										window.create(sf::VideoMode(1900, 1000), "HUMAN VS HUMAN");
+										window.setKeyRepeatEnabled(false);
+										window.setFramerateLimit(60);
 
+
+										//for bCKGROUND
+										sf::Texture texture;
+										if (!texture.loadFromFile("background.jpg"))
+										{
+
+										}
+										sf::Sprite spritebackground(texture);
+
+										spritebackground.setTexture(texture);
+										spritebackground.setOrigin(100, 200);
+
+										//for score 
+										int score = 1;
+										if (!font.loadFromFile("arial.ttf"))
+										{
+											// handle error
+										}
+										std::ostringstream ssscore;
+										ssscore << "Score:" << score;
+
+										sf::Text textscore;
+										textscore.setFont(font);
+										textscore.setString(ssscore.str());
+										textscore.setFillColor(sf::Color::Yellow);
+										textscore.setCharacterSize(35);
+										textscore.setPosition(340, 20);
+
+										sf::Text textscore1;
+										textscore1.setFont(font);
+										textscore1.setString(ssscore.str());
+										textscore1.setFillColor(sf::Color::Yellow);
+										textscore1.setCharacterSize(35);
+										textscore1.setPosition(1300, 20);
+
+
+
+										//for the hangman first box ok
+										sf::Vertex line[] =
+										{
+											sf::Vertex(sf::Vector2f(5, 15)),
+											sf::Vertex(sf::Vector2f(320, 15))
+										};
+										sf::Vertex line0[] =
+										{
+											sf::Vertex(sf::Vector2f(5, 320)),
+											sf::Vertex(sf::Vector2f(320, 320))
+										};
+										sf::Vertex line01[] =
+										{
+											sf::Vertex(sf::Vector2f(5, 15)),
+											sf::Vertex(sf::Vector2f(5, 320))
+										};
+										sf::Vertex line02[] =
+										{
+											sf::Vertex(sf::Vector2f(320, 15)),
+											sf::Vertex(sf::Vector2f(320, 320))
+										};
+										//for 2nd box
+										sf::Vertex man2box1[] =
+										{
+											sf::Vertex(sf::Vector2f(1500, 15)),
+											sf::Vertex(sf::Vector2f(1820, 15))
+										};
+										sf::Vertex man2box2[] =
+										{
+											sf::Vertex(sf::Vector2f(1500,320)),
+											sf::Vertex(sf::Vector2f(1820, 320))
+										};
+										sf::Vertex man2box3[] =
+										{
+											sf::Vertex(sf::Vector2f(1500, 15)),
+											sf::Vertex(sf::Vector2f(1500, 320))
+										};
+										sf::Vertex man2box4[] =
+										{
+											sf::Vertex(sf::Vector2f(1820, 15)),
+											sf::Vertex(sf::Vector2f(1820, 320))
+										};
+
+
+
+										sf::RectangleShape line1(sf::Vector2f(150, 20));
+
+										line1.setPosition(10, 280);
+										sf::RectangleShape line2(sf::Vector2f(255, 20));
+										line2.setPosition(85, 28);
+										line2.rotate(90);
+
+										sf::RectangleShape line3(sf::Vector2f(150, 20));
+										line3.setPosition(85, 28);
+
+										//straight hanman line passing through circle
+
+										sf::RectangleShape line4(sf::Vector2f(180, 20));
+										line4.setPosition(240, 28);
+										line4.rotate(90);
+										line4.setFillColor(sf::Color::Yellow);
+										//for head of hangman
+										sf::CircleShape circle(35);
+										circle.setPosition(200, 60);
+										sf::Texture texturecircle3;
+										if (!texturecircle3.loadFromFile("sad.jpg"))
+										{
+											// error...
+										}
+										circle.setTexture(&texturecircle3);
+										//fro legs of hangman
+										sf::RectangleShape line5(sf::Vector2f(65, 20));
+										line5.setPosition(240, 200);
+										line5.setFillColor(sf::Color::Yellow);
+										line5.rotate(60);
+										sf::RectangleShape line6(sf::Vector2f(75, 20));
+										line6.setPosition(240, 200);
+										line6.rotate(120);
+										line6.setFillColor(sf::Color::Yellow);
+										//for hands of hangman
+										sf::RectangleShape line8(sf::Vector2f(75, 20));
+										line8.setPosition(240, 150);
+										line8.setFillColor(sf::Color::Yellow);
+										line8.rotate(148);
+										sf::RectangleShape line7(sf::Vector2f(65, 20));
+										line7.setPosition(240, 140);
+										line7.rotate(32);
+										line7.setFillColor(sf::Color::Yellow);
+										//for another hangman next side one 
+										sf::RectangleShape line10(sf::Vector2f(150, 20));
+
+										line10.setPosition(1510, 280);
+										sf::RectangleShape line20(sf::Vector2f(255, 20));
+										line20.setPosition(1585, 28);
+										line20.rotate(90);
+										sf::RectangleShape line30(sf::Vector2f(150, 20));
+										line30.setPosition(1585, 28);
+										sf::RectangleShape line40(sf::Vector2f(180, 20));
+										line40.setPosition(1740, 28);
+										line40.rotate(90);
+										line40.setFillColor(sf::Color::Yellow);
+										sf::CircleShape circle2(35);
+										circle2.setPosition(1700, 60);
+										sf::Texture texturecircle4;
+										if (!texturecircle4.loadFromFile("sad.jpg"))
+										{
+											// error...
+										}
+										circle2.setTexture(&texturecircle4);
+										//for legs of another hangman
+										sf::RectangleShape line50(sf::Vector2f(75, 20));
+										line50.setPosition(1740, 200);
+										line50.rotate(120);
+										line50.setFillColor(sf::Color::Yellow);
+										sf::RectangleShape line60(sf::Vector2f(65, 20));
+										line60.setPosition(1740, 200);
+										line60.rotate(60);
+										line60.setFillColor(sf::Color::Yellow);
+										//for hands of another hangman
+										sf::RectangleShape line80(sf::Vector2f(65, 20));
+										line80.setPosition(1740, 140);
+										line80.setFillColor(sf::Color::Yellow);
+										line80.rotate(32);
+										sf::RectangleShape line70(sf::Vector2f(75, 20));
+										line70.setPosition(1740, 150);
+										line70.rotate(148);
+										line70.setFillColor(sf::Color::Yellow);
+
+										//text for player health
+										sf::Font font;
+
+										if (!font.loadFromFile("arial.ttf"))
+										{
+											// handle error
+										}
+
+										sf::Text text0;
+										text0.setFont(font);
+										text0.setString("Player 1 Life																						Player 2 Life");
+
+										text0.setFillColor(sf::Color::White);
+										text0.setCharacterSize(50);
+										text0.setPosition(35, 325);
+
+										sf::Texture texturehelp;
+										if (!texturehelp.loadFromFile("img1.png"))
+										{
+											std::cout << "Error loading paddle texture :(" << std::endl;
+										}
+
+										sf::Sprite spritehelp1(texturehelp);
+										spritehelp1.setPosition(1200, 900);
+
+
+
+										sf::Texture texturehelp2;
+										if (!texturehelp2.loadFromFile("img2.png"))
+										{
+											std::cout << "Error loading paddle texture :(" << std::endl;
+										}
+
+										sf::Sprite spritehelp2(texturehelp2);
+										spritehelp2.setPosition(50, 900);
+
+
+
+
+
+										//for scissor paper rock image displaying
+										sf::Texture texture2;
+										if (!texture2.loadFromFile("spr.jpg"))
+										{
+											std::cout << "Error loading paddle texture :(" << std::endl;
+										}
+
+										sf::Sprite sprite2(texture2);
+										sprite2.setPosition(50, 400);
+
+										sf::Texture texture3;
+										if (!texture3.loadFromFile("spr.jpg"))
+										{
+											std::cout << "Error loading paddle texture :(" << std::endl;
+										}
+
+										sf::Sprite sprite3(texture3);
+										sprite3.setPosition(1200, 400);
+
+										//for rock
+										sf::Texture texturerock;
+										if (!texturerock.loadFromFile("rock.jpg"))
+										{
+											std::cout << "Error loading paddle texture :(" << std::endl;
+										}
+
+										sf::Sprite spriterock2(texturerock);
+										spriterock2.setPosition(1300, 400);
+
+										sf::Sprite spriterock1(texturerock);
+										spriterock1.setPosition(300, 400);
+
+										//for scissors
+										sf::Texture texturescissors;
+										if (!texturescissors.loadFromFile("scissors.jpg"))
+										{
+											std::cout << "Error loading paddle texture :(" << std::endl;
+										}
+
+										sf::Sprite spritescissor2(texturescissors);
+										spritescissor2.setPosition(1300, 400);
+
+										sf::Sprite spritescissor1(texturescissors);
+										spritescissor1.setPosition(300, 400);
+
+										//for paper
+										sf::Texture texturepaper;
+										if (!texturepaper.loadFromFile("paper.jpg"))
+										{
+											std::cout << "Error loading paddle texture :(" << std::endl;
+										}
+
+										sf::Sprite spritepaper2(texturepaper);
+										spritepaper2.setPosition(1300, 400);
+
+										sf::Sprite spritepaper1(texturepaper);
+										spritepaper1.setPosition(300, 400);
+
+
+
+										while (window.isOpen())
+										{
+											sf::Event event;
+
+											while (window.pollEvent(event))
+											{
+												switch (event.type)
+												{
+												case sf::Event::Closed:
+													window.close();
+
+													break;
+
+												}
+											}
+
+
+
+
+
+											//for terminating window
+
+											if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+											{
+												window.close();
+											}
+											
+											if (!font.loadFromFile("arial.ttf"))
+											{
+												// handle error
+											}
+
+											sf::Text text00;
+											text00.setFont(font);
+											text00.setString("Player 1 wins!!!");
+											text00.setFillColor(sf::Color::Cyan);
+											text00.setCharacterSize(50);
+											text00.setPosition(800, 600);
+
+											sf::Text text000;
+											text000.setFont(font);
+											text000.setString("Player 2 wins!!!");
+											text000.setFillColor(sf::Color::Cyan);
+											text000.setCharacterSize(50);
+											text000.setPosition(800, 600);
+
+											sf::Text textdraw;
+											textdraw.setFont(font);
+											textdraw.setString("Draw!!!");
+											textdraw.setFillColor(sf::Color::Cyan);
+											textdraw.setCharacterSize(50);
+											textdraw.setPosition(800, 600);
+
+											sf::Text textexit;
+											textexit.setFont(font);
+											textexit.setString("Press Esc to Exit..");
+											textexit.setFillColor(sf::Color::Cyan);
+											textexit.setCharacterSize(35);
+											textexit.setPosition(800, 750);
+
+
+
+
+
+											window.clear();
+											window.draw(spritebackground);
+											//for input of scissor paper rock
+											/*
+											if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
+											{
+											window.draw(text12);
+											}*/
+
+											window.draw(textscore);
+											window.draw(textscore1);
+
+											window.draw(line1);
+											window.draw(line2);
+											window.draw(line3);
+
+											//sf::Clock myClock;
+											bool showCursor = false;
+
+											int i;
+											for (i = 0; i <= 4; i++)
+											{
+												int a, s, d, a1, s1, d1, a2, s2, d2, a3, s3, d3, x, y, z, x1, x2, x3, y1, y2, y3, z1, z2, z3;
+
+												if (event.type == sf::Event::KeyReleased)
+												{
+													if (event.key.code == sf::Keyboard::Key::A)
+													{
+
+														a = 1;
+														a1 = 10;
+														a2 = 100;
+														a3 = 1000;
+													}
+													else if (event.key.code == sf::Keyboard::Key::S)
+													{
+														s = 2;
+														s1 = 20;
+														s2 = 200;
+														s3 = 2000;
+													}
+													else if (event.key.code == sf::Keyboard::Key::D)
+													{
+														d = 3;
+														d1 = 30;
+														d2 = 300;
+														d3 = 3000;
+													}
+													else if (event.key.code == sf::Keyboard::Key::Numpad1)
+													{
+														x = 4;
+														x1 = 40;
+														x2 = 400;
+														x3 = 4000;
+													}
+													else if (event.key.code == sf::Keyboard::Key::Numpad2)
+													{
+														y = 5;
+														y1 = 50;
+														y2 = 500;
+														y3 = 5000;
+													}
+													else if (event.key.code == sf::Keyboard::Key::Numpad3)
+													{
+														z = 6;
+														z1 = 60;
+														z2 = 600;
+														z3 = 6000;
+													}
+												}
+
+												//for rANDOM NUMBER
+												/*{
+												srand(time(NULL));
+												x= rand() % 4;
+												//x = 2;
+												y = rand() % 4;
+												z = rand() % 4;
+												}*/
+
+												{
+													if (a == 1 && x == 4)
+													{
+													
+													window.draw(spritescissor1);
+													window.draw(spritescissor2);
+													window.draw(textdraw);
+													}
+
+													if (s == 2 && y == 5)
+													{
+
+														window.draw(spritepaper1);
+														window.draw(spritepaper2);
+														window.draw(textdraw);
+														window.draw(textexit);
+													}
+
+													if (d == 3 && z == 6)
+													{
+														window.draw(spriterock2);
+														window.draw(spriterock1);
+														window.draw(textdraw);
+														window.draw(textexit);
+													}
+
+
+													if (a == 1 && y == 5)
+													{
+														//window.draw(text00);
+														window.draw(line40);
+														window.draw(circle2);
+														window.draw(line50);
+														window.draw(line60);
+														window.draw(line80);
+														window.draw(line70);
+														//Sprite3.setOrigin(400, 300);
+														window.draw(spritescissor1);
+														window.draw(spritepaper2);
+														window.draw(text00);
+														window.draw(textexit);
+
+
+														score = 2;
+														ssscore.str("");
+														ssscore << "Score:" << score;
+														textscore.setString(ssscore.str());
+
+													}
+													if (s == 2 && z == 6)
+													{
+														//window.draw(text00);
+														window.draw(line40);
+														window.draw(circle2);
+														window.draw(line50);
+														window.draw(line60);
+														window.draw(line80);
+														window.draw(line70);
+														window.draw(spritepaper1);
+														window.draw(spriterock2);
+														window.draw(text00);
+														window.draw(textexit);
+
+
+														score = 2;
+														ssscore.str("");
+														ssscore << "Score:" << score;
+														textscore.setString(ssscore.str());
+													}
+													if (d == 3 && x == 4)
+													{
+														//window.draw(text00);
+														window.draw(line40);
+														window.draw(circle2);
+														window.draw(line50);
+														window.draw(line60);
+														window.draw(line80);
+														window.draw(line70);
+														window.draw(spriterock1);
+														window.draw(spritescissor2);
+														window.draw(text00);
+														window.draw(textexit);
+
+
+														score = 2;
+														ssscore.str("");
+														ssscore << "Score:" << score;
+														textscore.setString(ssscore.str());
+
+													}
+													{
+														
+													}
+													if (x == 4 && s == 2)
+													{
+														//window.draw(text000);
+														window.draw(line4);
+														window.draw(circle);
+														window.draw(line5);
+														window.draw(line6);
+														window.draw(line8);
+
+														window.draw(line7);
+														window.draw(spritescissor2);
+														window.draw(spritepaper1);
+														window.draw(text000);
+														window.draw(textexit);
+														
+
+														score = 2;
+
+														ssscore.str("");
+														ssscore << "Score:" << score;
+														textscore1.setString(ssscore.str());
+													}
+													if (y == 5 && d == 3)
+
+													{
+														//window.draw(text000);
+														window.draw(line4);
+														window.draw(circle);
+														window.draw(line5);
+														window.draw(line6);
+														window.draw(line8);
+
+														window.draw(line7);
+														window.draw(spritepaper2);
+														window.draw(spriterock1);
+														window.draw(text000);
+														window.draw(textexit);
+
+														score = 2;
+
+														ssscore.str("");
+														ssscore << "Score:" << score;
+														textscore1.setString(ssscore.str());
+													}
+													if (z == 6 && a == 1)
+													{
+														//score = 1;
+														//window.draw(text000);
+														window.draw(line4);
+														window.draw(circle);
+														window.draw(line5);
+														window.draw(line6);
+														window.draw(line8);
+
+														window.draw(line7);
+														window.draw(spriterock2);
+														window.draw(spritescissor1);
+														window.draw(text000);
+														window.draw(textexit);
+
+														score = 2;
+
+														ssscore.str("");
+														ssscore << "Score:" << score;
+														textscore1.setString(ssscore.str());
+
+													}
+													//window.draw(textexit);
+													{
+
+
+														if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
+														{
+
+															
+														}
+
+
+														showCursor = true;
+													}
+													/*if (showCursor = true)
+													{
+													window.clear();
+													}*/
+
+
+
+												}
+											}
+											/*
+											{
+
+
+											if (a == 1 && y == 5 || s == 2 && z == 6 || d == 3 && x == 4)
+											{
+											window.draw(line40);
+
+											}
+
+
+
+											if (a1 == 10 && y1 == 50 || s1 == 20 && z1 == 60 || d1 == 30 && x1 == 40)
+											{
+											window.draw(circle2);
+
+											}
+
+											if (a2 == 100 && y2 == 500 || s2 == 200 && z2 == 600 || d2 == 300 && x2 == 400)
+											{
+											window.draw(line50);
+											window.draw(line60);
+
+											}
+
+											if (a3 == 1000 && y3 == 5000 || s3 == 2000 && z3 == 6000 || d3 == 3000 && x3 == 4000)
+											{
+											window.draw(line80);
+											window.draw(line70);
+											window.draw(text00);
+											showCursor = false;
+											if (showCursor == false)
+											score++;
+											ssscore.str("");
+											ssscore << "Score:" << score;
+											textscore.setString(ssscore.str());
+											showCursor = true;
+
+											}
+
+
+
+											if (x == 4 && s == 2 || y == 5 && d == 3 || z == 6 && a == 1)
+											{
+											window.draw(line4);
+											}
+											if (x1 == 40 && s1 == 20 || y1 == 50 && d1 == 30 || z1 == 60 && a1 == 10)
+											{
+											window.draw(circle);
+											}
+											if (x2 == 400 && s2 == 200 || y2 == 500 && d2 == 300 || z2 == 600 && a2 == 100)
+											{
+											window.draw(line5);
+											window.draw(line6);
+											}
+											if (x3 == 4000 && s3 == 2000 || y3 == 5000 && d3 == 3000 || z3 == 6000 && a3 == 1000)
+											{
+											window.draw(line8);
+											window.draw(line7);
+											window.draw(text000);
+
+
+											score++;
+											ssscore.str("");
+											ssscore << "Score:" << score;
+											textscore1.setString(ssscore.str());
+
+											}
+
+											}
+											*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+											/*else if (a == 1 && x == 0 || a == 2 && x == 1 || a == 0 && x == 2 || a == 1 && x == 2)
+											{
+											window.draw(line4);
+											}*/
+
+
+
+
+
+
+
+
+											//myTxt.setString("System Module:_");
+
+
+											// left key is pressed: move our character
+
+
+											//	window.draw(line4);
+											//window.draw(circle);
+
+
+											//another one
+											window.draw(line10);
+											window.draw(line20);
+											window.draw(line30);
+											//window.draw(line40);
+											//window.draw(circle2);
+
+
+											//window.draw(sprite);
+
+											//window.draw(sprite2);
+											//window.draw(sprite3);
+
+
+											//for rectangle ouside 1srhangman
+											window.draw(line, 2, sf::Lines);
+											window.draw(line0, 2, sf::Lines);
+											window.draw(line01, 2, sf::Lines);
+											window.draw(line02, 2, sf::Lines);
+											//for rectangle outside the 2nd human
+											window.draw(man2box1, 2, sf::Lines);
+											window.draw(man2box2, 2, sf::Lines);
+											window.draw(man2box3, 2, sf::Lines);
+											window.draw(man2box4, 2, sf::Lines);
+											window.draw(text0);
+											window.draw(spritehelp1);
+											window.draw(spritehelp2);
+
+
+											window.display();
+
+										}
+									}
+									break;
+
+									//enter le naya windoe lyane delete this loop papradox.....ends here....
+					
 
 									showCursor = true;
 								}
@@ -903,7 +1726,7 @@ int main()
 
 						sf::Text text2;
 						text2.setFont(font);
-						text2.setString("Ashish Pokhrel (Boltar) (38)\n\n Dinesh Poudel (39)\n\n Prashant Bhatta (09) \n\nBishal K.C. (22)\n\n\n\n\nPress Enter to Exit.");
+						text2.setString("Ashish Pokhrel --Boltar-- (38)\n\n Dinesh Poudel (39)\n\n Prashant Bhatta (09) \n\nBishal K.C. (22)\n\n\n\n\nPress Enter to Exit.");
 						text2.setFillColor(sf::Color::Red);
 						text2.setCharacterSize(40);
 						text2.setPosition(50, 160);
