@@ -3,25 +3,41 @@
 #include "Menu.h"
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
 
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1900, 1000), "Menu");
-
+	
+	
+	
+	
+		
+	
 	sf::Font font;
 
-	if (!font.loadFromFile("arial.ttf"))
+	if (!font.loadFromFile("ICELAND.ttf"))
 	{
 		// handle error
 	}
 
-	sf::Text text0;
-	text0.setFont(font);
-	text0.setString("Save Me IF You Can!!!");
-	text0.setFillColor(sf::Color::White);
-	text0.setCharacterSize(150);
-	text0.setPosition(200, 50);
+	sf::Text textmain;
+	textmain.setFont(font);
+	textmain.setString("Save Me IF You Can!!!");
+	textmain.setFillColor(sf::Color::Blue);
+	textmain.setCharacterSize(150);
+	textmain.setPosition(200, 50);
+
+	sf::Texture texture;
+	if (!texture.loadFromFile("background.jpg"))
+	{
+
+	}
+	sf::Sprite sprite(texture);
+
+	sprite.setTexture(texture);
+	sprite.setOrigin(100, 200);
 
 	Menu menu(window.getSize().x, window.getSize().y);
 
@@ -50,12 +66,45 @@ int main()
 						//human vs human window
 					case 0:
 					{
-
-
+					
 
 
 						sf::RenderWindow window(sf::VideoMode(1900, 1000), "HUman vs Human");
 
+
+						//for bCKGROUND
+						sf::Texture texture;
+						if (!texture.loadFromFile("background.jpg"))
+						{
+
+						}
+						sf::Sprite spritebackground(texture);
+
+						spritebackground.setTexture(texture);
+						spritebackground.setOrigin(100, 200);
+
+						//for score 
+						int score = 0;
+						if (!font.loadFromFile("arial.ttf"))
+						{
+							// handle error
+						}
+						std::ostringstream ssscore;
+						ssscore << "Score:" << score;
+
+						sf::Text textscore;
+						textscore.setFont(font);
+						textscore.setString(ssscore.str());
+						textscore.setFillColor(sf::Color::Yellow);
+						textscore.setCharacterSize(35);
+						textscore.setPosition(340, 20);
+
+						sf::Text textscore1;
+						textscore1.setFont(font);
+						textscore1.setString(ssscore.str());
+						textscore1.setFillColor(sf::Color::Yellow);
+						textscore1.setCharacterSize(35);
+						textscore1.setPosition(1300, 20);
 
 
 
@@ -180,33 +229,34 @@ int main()
 						text0.setFillColor(sf::Color::White);
 						text0.setCharacterSize(50);
 						text0.setPosition(35, 325);
-						sf::Texture texture;
 
-						if (!texture.loadFromFile("img1.png"))
+						sf::Texture texturehelp;
+						if (!texturehelp.loadFromFile("img1.png"))
 						{
 							std::cout << "Error loading paddle texture :(" << std::endl;
 						}
 
-						sf::Sprite sprite(texture);
+						sf::Sprite spritehelp1(texturehelp);
+						spritehelp1.setPosition(1200, 900);
 
-						// or
+					
 
-						//sf::Sprite sprite;
-						//sprite.setTexture(texture);
-						sprite.setPosition(1200, 900);
-						//for anoter image
-						sf::Texture texture1;
-						if (!texture1.loadFromFile("img2.png"))
+						sf::Texture texturehelp2;
+						if (!texturehelp2.loadFromFile("img2.png"))
 						{
 							std::cout << "Error loading paddle texture :(" << std::endl;
 						}
 
-						sf::Sprite sprite1(texture1);
-						sprite1.setPosition(50, 900);
+						sf::Sprite spritehelp2(texturehelp2);
+						spritehelp2.setPosition(50, 900);
+
+						
+
+						
 
 						//for scissor paper rock image displaying
 						sf::Texture texture2;
-						if (!texture2.loadFromFile("paper1.jpg"))
+						if (!texture2.loadFromFile("spr.jpg"))
 						{
 							std::cout << "Error loading paddle texture :(" << std::endl;
 						}
@@ -215,13 +265,54 @@ int main()
 						sprite2.setPosition(50, 400);
 
 						sf::Texture texture3;
-						if (!texture3.loadFromFile("paper2.jpg"))
+						if (!texture3.loadFromFile("spr.jpg"))
 						{
 							std::cout << "Error loading paddle texture :(" << std::endl;
 						}
 
 						sf::Sprite sprite3(texture3);
 						sprite3.setPosition(1200, 400);
+
+						//for rock
+						sf::Texture texturerock;
+						if (!texturerock.loadFromFile("rock.jpg"))
+						{
+							std::cout << "Error loading paddle texture :(" << std::endl;
+						}
+
+						sf::Sprite spriterock2(texturerock);
+						spriterock2.setPosition(1300, 400);
+
+						sf::Sprite spriterock1(texturerock);
+						spriterock1.setPosition(300, 400);
+
+						//for scissors
+						sf::Texture texturescissors;
+						if (!texturescissors.loadFromFile("scissors.jpg"))
+						{
+							std::cout << "Error loading paddle texture :(" << std::endl;
+						}
+
+						sf::Sprite spritescissor2(texturescissors);
+						spritescissor2.setPosition(1300, 400);
+
+						sf::Sprite spritescissor1(texturescissors);
+						spritescissor1.setPosition(300, 400);
+
+						//for paper
+						sf::Texture texturepaper;
+						if (!texturepaper.loadFromFile("paper.jpg"))
+						{
+							std::cout << "Error loading paddle texture :(" << std::endl;
+						}
+
+						sf::Sprite spritepaper2(texturepaper);
+						spritepaper2.setPosition(1300, 400);
+
+						sf::Sprite spritepaper1(texturepaper);
+						spritepaper1.setPosition(300, 400);
+
+
 
 						while (window.isOpen())
 						{
@@ -235,35 +326,20 @@ int main()
 									window.close();
 
 									break;
-								
+
 								}
 							}
 
-							
-							
+
+
 
 
 							//for terminating window
-							
+
 							if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 							{
 								window.close();
 							}
-							
-
-
-
-							window.clear();
-							//for input of scissor paper rock
-							/*
-							if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
-							{
-								window.draw(text12);
-							}*/
-
-							window.draw(line1);
-							window.draw(line2);
-							window.draw(line3);
 
 							if (!font.loadFromFile("arial.ttf"))
 							{
@@ -273,16 +349,36 @@ int main()
 							sf::Text text00;
 							text00.setFont(font);
 							text00.setString("Player 1 wins!!!");
-							text00.setFillColor(sf::Color::Red);
+							text00.setFillColor(sf::Color::Cyan);
 							text00.setCharacterSize(35);
 							text00.setPosition(35, 800);
 
 							sf::Text text000;
 							text000.setFont(font);
 							text000.setString("Player 2 wins!!!");
-							text000.setFillColor(sf::Color::Red);
+							text000.setFillColor(sf::Color::Cyan);
 							text000.setCharacterSize(35);
 							text000.setPosition(1450, 800);
+
+
+
+							window.clear();
+							window.draw(spritebackground);
+							//for input of scissor paper rock
+							/*
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
+							{
+								window.draw(text12);
+							}*/
+
+							window.draw(textscore);
+							window.draw(textscore1);
+
+							window.draw(line1);
+							window.draw(line2);
+							window.draw(line3);
+
+
 
 
 							/*
@@ -301,175 +397,358 @@ int main()
 									}
 								}
 								*/
-							//sf::Clock myClock;
-							//bool showCursor = false;
-							int a, s, d, a1, s1, d1, a2, s2, d2, a3, s3, d3, x, y, z, x1, x2, x3, y1, y2, y3, z1, z2, z3;
-							
-							if (event.type == sf::Event::KeyReleased)
-							{
-								if (event.key.code == sf::Keyboard::Key::A)
-								{
 
-									a = 1;
-									a1 = 10;
-									a2 = 100;
-									a3 = 1000;
-								}
-								else if (event.key.code == sf::Keyboard::Key::S)
+								//sf::Clock myClock;
+							bool showCursor = false;
+
+							int i;
+							for (i = 0; i <= 4; i++)
+							{
+								int a, s, d, a1, s1, d1, a2, s2, d2, a3, s3, d3, x, y, z, x1, x2, x3, y1, y2, y3, z1, z2, z3;
+
+								if (event.type == sf::Event::KeyReleased)
 								{
-									s = 2;
-									s1 = 20;
-									s2 = 200;
-									s3 = 2000;
+									if (event.key.code == sf::Keyboard::Key::A)
+									{
+
+										a = 1;
+										a1 = 10;
+										a2 = 100;
+										a3 = 1000;
+									}
+									else if (event.key.code == sf::Keyboard::Key::S)
+									{
+										s = 2;
+										s1 = 20;
+										s2 = 200;
+										s3 = 2000;
+									}
+									else if (event.key.code == sf::Keyboard::Key::D)
+									{
+										d = 3;
+										d1 = 30;
+										d2 = 300;
+										d3 = 3000;
+									}
+									else if (event.key.code == sf::Keyboard::Key::Numpad1)
+									{
+										x = 4;
+										x1 = 40;
+										x2 = 400;
+										x3 = 4000;
+									}
+									else if (event.key.code == sf::Keyboard::Key::Numpad2)
+									{
+										y = 5;
+										y1 = 50;
+										y2 = 500;
+										y3 = 5000;
+									}
+									else if (event.key.code == sf::Keyboard::Key::Numpad3)
+									{
+										z = 6;
+										z1 = 60;
+										z2 = 600;
+										z3 = 6000;
+									}
 								}
-								else if (event.key.code == sf::Keyboard::Key::D)
-								{
-									d = 3;
-									d1 = 30;
-									d2 = 300;
-									d3 = 3000;
-								}
-								else if (event.key.code == sf::Keyboard::Key::Numpad1)
-								{
-									x = 4;
-									x1 = 40;
-									x2 = 400;
-									x3 = 4000;
-								}
-								else if (event.key.code == sf::Keyboard::Key::Numpad2)
-								{
-									y = 5;
-									y1 = 50;
-									y2 = 500;
-									y3 = 5000;
-								}
-								else if (event.key.code == sf::Keyboard::Key::Numpad3)
-								{
-									z = 6;
-									z1 = 60;
-									z2 = 600;
-									z3 = 6000;
-								}
-							}
-							
-							//for rANDOM NUMBER
-							/*{
+
+								//for rANDOM NUMBER
+								/*{
 								srand(time(NULL));
 								x= rand() % 4;
 								//x = 2;
 								y = rand() % 4;
 								z = rand() % 4;
-							}*/
-
-								
+								}*/
 							
+								{ 
+								if (a == 1 && y == 5)
+								{
+									//window.draw(text00);
+									window.draw(line40);
+									window.draw(circle2);
+									window.draw(line50);
+									window.draw(line60);
+									window.draw(line80);
+									window.draw(line70);
+									//Sprite3.setOrigin(400, 300);
+									window.draw(spritescissor1);
+									window.draw(spritepaper2);
+									window.draw(text00);
+
+
+									score = 1;
+									ssscore.str("");
+									ssscore << "Score:" << score;
+									textscore.setString(ssscore.str());
+									
+								}
+								if (s == 2 && z == 6)
+								{
+									//window.draw(text00);
+									window.draw(line40);
+									window.draw(circle2);
+									window.draw(line50);
+									window.draw(line60);
+									window.draw(line80);
+									window.draw(line70);
+									window.draw(spritepaper1);
+									window.draw(spriterock2);
+									window.draw(text00);
+
+
+									score = 1;
+									ssscore.str("");
+									ssscore << "Score:" << score;
+									textscore.setString(ssscore.str());
+								}
+								if (d == 3 && x == 4)
+								{
+									//window.draw(text00);
+									window.draw(line40);
+									window.draw(circle2);
+									window.draw(line50);
+									window.draw(line60);
+									window.draw(line80);
+									window.draw(line70);
+									window.draw(spriterock1);
+									window.draw(spritescissor2);
+									window.draw(text00);
+
+
+									score = 1;
+									ssscore.str("");
+									ssscore << "Score:" << score;
+									textscore.setString(ssscore.str());
+
+								}
+								{
+									//sf::Time t3 = sf::seconds(10);
+
+
+									
+
+									
+
+
+
+								}
+								if (x == 4 && s == 2)
+								{
+									//window.draw(text000);
+									window.draw(line4);
+									window.draw(circle);
+									window.draw(line5);
+									window.draw(line6);
+									window.draw(line8);
+
+									window.draw(line7);
+									window.draw(spritescissor2);
+									window.draw(spritepaper1);
+									window.draw(text000);
+
+									score = 1;
+
+									ssscore.str("");
+									ssscore << "Score:" << score;
+									textscore1.setString(ssscore.str());
+								}
+								if (y == 5 && d == 3)
+
+								{
+									//window.draw(text000);
+									window.draw(line4);
+									window.draw(circle);
+									window.draw(line5);
+									window.draw(line6);
+									window.draw(line8);
+
+									window.draw(line7);
+									window.draw(spritepaper2);
+									window.draw(spriterock1);
+									window.draw(text000);
+
+									score = 1;
+
+									ssscore.str("");
+									ssscore << "Score:" << score;
+									textscore1.setString(ssscore.str());
+								}
+								if (z == 6 && a == 1)
+								{
+									//score = 1;
+									//window.draw(text000);
+									window.draw(line4);
+									window.draw(circle);
+									window.draw(line5);
+									window.draw(line6);
+									window.draw(line8);
+
+									window.draw(line7);
+									window.draw(spriterock2);
+									window.draw(spritescissor1);
+									window.draw(text000);
+
+									score = 1;
+
+									ssscore.str("");
+									ssscore << "Score:" << score;
+									textscore1.setString(ssscore.str());
+
+								}
+								{
+
+
+									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
+									{
+										
+									}
+
+
+									showCursor = true;
+								}
+									/*if (showCursor = true)
+									{
+									window.clear();
+									}*/
+
+
+
+								}
+							}
+							/*
 							{
+
+
 								if (a == 1 && y == 5 || s == 2 && z == 6 || d == 3 && x == 4)
 								{
 									window.draw(line40);
-									{
-										if (a1 == 10 && y1 == 50 || s1 == 20 && z1 == 60 || d1 == 30 && x1 == 40)
-											window.draw(circle2);
-										{
-											if (a2 == 100 && y2 == 500 || s2 == 200 && z2 == 600 || d2 == 300 && x2 == 400)
-												window.draw(line50);
-											window.draw(line60);
-											{
-												if (a3 == 1000 && y3 == 5000 || s3 == 2000 && z3 == 6000 || d3 == 3000 && x3 == 4000)
-													window.draw(line80);
-												window.draw(line70);
-
-												window.draw(text00);
-												if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
-												{
-													
-													window.clear(line70);
-													
-												}
-
-												
-											}
-
-										}
-
-									}
 
 								}
-								else if (x == 4 && s == 2 || y == 5 && d == 3 || z == 6 && a == 1)
+
+
+
+								if (a1 == 10 && y1 == 50 || s1 == 20 && z1 == 60 || d1 == 30 && x1 == 40)
+								{
+									window.draw(circle2);
+
+								}
+
+								if (a2 == 100 && y2 == 500 || s2 == 200 && z2 == 600 || d2 == 300 && x2 == 400)
+								{
+									window.draw(line50);
+									window.draw(line60);
+
+								}
+
+								if (a3 == 1000 && y3 == 5000 || s3 == 2000 && z3 == 6000 || d3 == 3000 && x3 == 4000)
+								{
+									window.draw(line80);
+									window.draw(line70);
+									window.draw(text00);
+									showCursor = false;
+									if (showCursor == false)
+									score++;
+									ssscore.str("");
+									ssscore << "Score:" << score;
+									textscore.setString(ssscore.str());
+									showCursor = true;
+
+								}
+
+
+
+								if (x == 4 && s == 2 || y == 5 && d == 3 || z == 6 && a == 1)
 								{
 									window.draw(line4);
-									{
-										if (x1 == 40 && s1 == 20 || y1 == 50 && d1 == 30 || z1 == 60 && a1 == 10)
-											window.draw(circle);
-										{
-											if (x2 == 400 && s2 == 200 || y2 == 500 && d2 == 300 || z2 == 600 && a2 == 100)
-												window.draw(line5);
-											window.draw(line6);
-											{
-												if (x3 == 4000 && s3 == 2000 || y3 == 5000 && d3 == 3000 || z3 == 6000 && a3 == 1000)
-													window.draw(line8);
-													window.draw(line7);
-													window.draw(text000);
-											}
-
-										}
-
-									}
 								}
+								if (x1 == 40 && s1 == 20 || y1 == 50 && d1 == 30 || z1 == 60 && a1 == 10)
+								{
+									window.draw(circle);
+								}
+								if (x2 == 400 && s2 == 200 || y2 == 500 && d2 == 300 || z2 == 600 && a2 == 100)
+								{
+									window.draw(line5);
+									window.draw(line6);
+								}
+								if (x3 == 4000 && s3 == 2000 || y3 == 5000 && d3 == 3000 || z3 == 6000 && a3 == 1000)
+								{
+									window.draw(line8);
+									window.draw(line7);
+									window.draw(text000);
+
+
+									score++;
+									ssscore.str("");
+									ssscore << "Score:" << score;
+									textscore1.setString(ssscore.str());
+
+								}
+
 							}
-
-										
-
-									
-									
-										
-											
-											
-												
-												
-
-											
-
-										
-									
-								
-								
-								
-
-										 /*else if (a == 1 && x == 0 || a == 2 && x == 1 || a == 0 && x == 2 || a == 1 && x == 2)
-										 {
-											 window.draw(line4);
-										 }*/
-									 
-									 
-						    
+							*/
 
 
-							
-							
-								
-								//myTxt.setString("System Module:_");
-							
-							
-								// left key is pressed: move our character
-							
-							
-							//	window.draw(line4);
-							//window.draw(circle);
-							
-							
-							//another one
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							/*else if (a == 1 && x == 0 || a == 2 && x == 1 || a == 0 && x == 2 || a == 1 && x == 2)
+							{
+								window.draw(line4);
+							}*/
+
+
+
+
+
+
+
+
+							//myTxt.setString("System Module:_");
+
+
+							// left key is pressed: move our character
+
+
+						//	window.draw(line4);
+						//window.draw(circle);
+
+
+						//another one
 							window.draw(line10);
 							window.draw(line20);
 							window.draw(line30);
 							//window.draw(line40);
 							//window.draw(circle2);
-							
-							window.draw(text0);
-							window.draw(sprite);
-							window.draw(sprite1);
-							window.draw(sprite2);
-							window.draw(sprite3);
+
+
+							//window.draw(sprite);
+
+							//window.draw(sprite2);
+							//window.draw(sprite3);
+
 
 							//for rectangle ouside 1srhangman
 							window.draw(line, 2, sf::Lines);
@@ -481,8 +760,11 @@ int main()
 							window.draw(man2box2, 2, sf::Lines);
 							window.draw(man2box3, 2, sf::Lines);
 							window.draw(man2box4, 2, sf::Lines);
+							window.draw(text0);
+							window.draw(spritehelp1);
+							window.draw(spritehelp2);
 
-
+						
 							window.display();
 
 						}
@@ -497,7 +779,15 @@ int main()
 						sf::RenderWindow window(sf::VideoMode(1900, 1000), "HUman vs CPU");
 
 
+						sf::Texture texture;
+						if (!texture.loadFromFile("background.jpg"))
+						{
 
+						}
+						sf::Sprite sprite(texture);
+
+						sprite.setTexture(texture);
+						sprite.setOrigin(100, 200);
 						while (window.isOpen())
 						{
 							sf::Event event;
@@ -517,12 +807,15 @@ int main()
 							}
 
 							window.clear();
+							window.draw(sprite);
 
 							window.display();
 						}
 
 					}
-						break;
+					break;
+					
+
 					case 2:
 					{
 
@@ -571,9 +864,10 @@ int main()
 							}
 
 							window.clear();
+							window.draw(sprite);
 							window.draw(text1);
 							window.draw(text2);
-
+							
 							window.display();
 						}
 					}
@@ -583,7 +877,15 @@ int main()
 					{
 
 						sf::RenderWindow window(sf::VideoMode(1500, 850), "About Developers");
+						sf::Texture texture;
+						if (!texture.loadFromFile("background.jpg"))
+						{
 
+						}
+						sf::Sprite sprite(texture);
+
+						sprite.setTexture(texture);
+						sprite.setOrigin(100, 200);
 						sf::Font font;
 
 						if (!font.loadFromFile("arial.ttf"))
@@ -629,9 +931,10 @@ int main()
 							}
 
 							window.clear();
+							window.draw(sprite);
 							window.draw(text1);
 							window.draw(text2);
-
+							
 							window.display();
 						}
 
@@ -655,8 +958,9 @@ int main()
 		}
 
 		window.clear();
-
-		window.draw(text0);
+		window.draw(sprite);
+		window.draw(textmain);
+		
 
 
 		menu.draw(window);
