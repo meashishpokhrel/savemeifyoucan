@@ -3,6 +3,10 @@
 
 Menu::Menu(float width, float height)
 {
+
+
+	
+
 	if (!font.loadFromFile("arial.ttf"))
 	{
 		// handle error
@@ -57,6 +61,7 @@ void Menu::draw(sf::RenderWindow &window)
 	for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
 	{
 		window.draw(menu[i]);
+		
 	}
 	
 }
@@ -80,3 +85,4 @@ void Menu::MoveDown()
 		menu[selectedItemIndex].setFillColor(sf::Color::Red);
 	}
 }
+
